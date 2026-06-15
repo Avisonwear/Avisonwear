@@ -1,0 +1,96 @@
+import Navbar from "@/components/navbar";
+import Hero from "@/components/hero";
+import ProductCard from "@/components/productcard";
+import Footer from "@/components/footer";
+import { supabase } from "@/lib/supabase";
+
+export default async function Home() {
+  const { data: products, error } = await supabase
+  .from("products")
+  .select("*")
+  .eq("drop", 1);
+
+console.log("PRODUCTS:", products);
+console.log("ERROR:", error);
+
+if (error) {
+  return <div>{JSON.stringify(error)}</div>;
+}
+
+return (
+    <main className="bg-black text-white">
+      <Navbar />
+      <Hero />
+      <div className="border-y border-white/10 py-4 text-center text-sm tracking-[0.2em] text-gray-300">
+  LIMITED DROP 001 • 400 GSM PREMIUM COTTON • WORLDWIDE SHIPPING
+</div>
+
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <div className="text-center mb-16">
+          <p className="uppercase tracking-[0.3em] text-gray-500 mb-3">
+            Collection
+          </p>
+
+          <h2 className="text-5xl md:text-6xl font-black">
+  FEATURED TRACKSUITS
+</h2>
+<p className="text-gray-400 mt-4 max-w-xl mx-auto">
+  Premium heavyweight tracksuits designed for everyday wear.
+</p>
+        </div>
+
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
+
+          {products?.map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={`CHF ${product.price}`}
+              image={product.image}
+              link={`/products/${product.slug}`}
+            />
+          ))}
+
+        </div>
+      </section>
+
+      <section className="py-32 px-10 bg-black">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-3 gap-8">
+
+          <div className="border border-white/10 rounded-3xl p-10 text-center hover:border-white/30 transition">
+            <h3 className="text-2xl font-bold mb-4">
+              FREE SHIPPING OVER CHF 150
+            </h3>
+
+            <p className="text-gray-400">
+              Fast worldwide delivery on every order.
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-3xl p-10 text-center hover:border-white/30 transition">
+            <h3 className="text-2xl font-bold mb-4">
+              PREMIUM QUALITY
+            </h3>
+
+            <p className="text-gray-400">
+              400 GSM Premium Cotton.
+            </p>
+          </div>
+
+          <div className="border border-white/10 rounded-3xl p-10 text-center hover:border-white/30 transition">
+            <h3 className="text-2xl font-bold mb-4">
+              LIMITED DROPS
+            </h3>
+
+            <p className="text-gray-400">
+              Exclusive drops. Limited quantities only.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <Footer />
+    </main>
+  );
+}

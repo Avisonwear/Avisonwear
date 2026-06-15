@@ -1,0 +1,44 @@
+"use client";
+
+import Link from "next/link";
+import { useCart } from "@/app/context/CartContext";
+
+export default function Navbar() {
+  const { cart } = useCart();
+
+  return (
+    <nav className="sticky top-0 z-50 flex items-center justify-between px-10 py-6 border-b border-white/10 bg-black/90 backdrop-blur">
+
+      <Link
+  href="/"
+  className="text-2xl md:text-3xl font-bold tracking-[0.3em]"
+>
+  AVISON
+</Link>
+
+      <div className="hidden md:flex gap-16 text-base uppercase font-medium tracking-wider">
+        <Link href="/tracksuits">Tracksuits</Link>
+        <Link href="/hoodies">Hoodies</Link>
+        <Link href="/tshirts">T-Shirts</Link>
+        <Link href="/shorts">Shorts</Link>
+        <Link
+  href="/summer-sets"
+  className="hover:text-white transition"
+>
+  SUMMER SETS
+</Link>
+<Link href="/joggers">
+  JOGGERS
+</Link>
+      </div>
+
+      <Link
+        href="/cart"
+        className="px-8 py-3 rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-black transition-all duration-300"
+      >
+        Cart ({cart.length})
+      </Link>
+
+    </nav>
+  );
+}
