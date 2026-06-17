@@ -11,10 +11,9 @@ export default async function Home() {
   .eq("drop", 1);
 
 console.log("PRODUCTS:", products);
-console.log("ERROR:", error);
 
 if (error) {
-  return <div>{JSON.stringify(error)}</div>;
+  console.error(error);
 }
 
 return (

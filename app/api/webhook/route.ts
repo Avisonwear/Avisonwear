@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
+import { Resend } from "resend";
 
+const resend = new Resend(process.env.RESEND_API_KEY!);
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
 
 const supabase = createClient(
@@ -87,6 +89,7 @@ const referralPoints = items.reduce(
   }
 }
 console.log("ORDER:", order);
+
   console.log("SESSION ID:", session.id);
 
 const { data, error } = await supabase
@@ -98,6 +101,83 @@ const { data, error } = await supabase
   .select();
 
 console.log("UPDATE DATA:", data);
+if (order) {
+  let items = [];
+
+  try {
+    items = JSON.parse(order.items);
+  } catch {
+    items = [];
+  }
+
+  const itemsHtml = items
+    .map(
+      (item: any) => `
+        <li>
+          ${item.name}
+          ${item.size ? ` - Size: ${item.size}` : ""}
+          - Qty: ${item.quantity}
+        </li>
+      `
+    )
+    .join("");
+
+await resend.emails.send({
+  from: "Avisonwear <support@avisonwear.ch>",
+  to: order.customer_email,
+  subject: "Order Confirmation - Avisonwear",
+  html: `
+    <h2>Thank you for your order!</h2>
+
+    <p>Hello ${order.first_name || "Customer"},</p>
+
+    <p>Your order has been received successfully.</p>
+
+    <ul>
+      ${itemsHtml}
+    </ul>
+
+    <p><strong>Total:</strong> CHF ${order.amount}</p>
+
+    <p>We will start preparing your order shortly.</p>
+
+    <p>Thank you for supporting Avisonwear ❤️</p>
+  `,
+});
+
+await resend.emails.send({
+  from: "Avisonwear <support@avisonwear.ch>",
+  to: "support@avisonwear.ch",
+  subject: `New Order #${order.id}`,
+  html: `
+    <h2>New Order Received</h2>
+
+    <p><strong>Name:</strong> ${order.first_name || "-"}</p>
+
+    <p><strong>Email:</strong> ${order.customer_email}</p>
+
+    <p><strong>Phone:</strong> ${order.phone || "-"}</p>
+
+    <p><strong>Address:</strong></p>
+
+    <p>
+      ${order.street || "-"}<br>
+      ${order.zip || "-"} ${order.city || "-"}<br>
+      ${order.country || "-"}
+    </p>
+
+    <p><strong>Referral:</strong> ${order.referral_email || "-"}</p>
+
+    <p><strong>Total:</strong> CHF ${order.amount}</p>
+
+    <h3>Products</h3>
+
+    <ul>
+      ${itemsHtml}
+    </ul>
+  `,
+});
+}
 console.log("UPDATE ERROR:", error);
 }
 

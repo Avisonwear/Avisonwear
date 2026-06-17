@@ -3,6 +3,10 @@ import Stripe from "stripe";
 import { createClient } from "@supabase/supabase-js";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
+console.log(
+  "STRIPE KEY PREFIX:",
+  process.env.STRIPE_SECRET_KEY?.substring(0, 8)
+);
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
