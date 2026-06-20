@@ -91,26 +91,13 @@ text-center
     JOGGERS
   </Link>
 
-<Link
-  href="/summer-sets"
-  className="
-  px-8
-  py-3
-  min-w-[160px]
-  text-base
-  tracking-[0.15em]
-  rounded-full
-  bg-white
-  text-black
-  font-bold
-  hover:scale-105
-  transition-all
-  duration-300
-  text-center
-  "
->
-  🔥 SUMMER SETS
-</Link>
+  <Link
+    href="/summer-sets"
+    className="px-8 py-3 min-w-[160px] text-base tracking-[0.15em] rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-center"
+  >
+    SUMMER SETS
+  </Link>
+
   <Link
     href="/tshirts"
     className="px-8 py-3 min-w-[160px] text-base tracking-[0.15em] rounded-full border border-white/20 hover:border-white hover:bg-white hover:text-black transition-all duration-300 hover:scale-105 text-center"
