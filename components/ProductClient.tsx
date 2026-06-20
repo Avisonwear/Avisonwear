@@ -44,7 +44,7 @@ export default function ProductClient({
             {product.name}
           </h1>
 
-          <p className="text-5xl font-black mt-8">
+          <p className="text-4xl font-black mt-8">
   CHF {Number(product.price).toFixed(2)}
 </p>
 
@@ -75,7 +75,7 @@ export default function ProductClient({
               Select Size
             </p>
 
-            <div className="flex gap-4 mt-6">
+            <div className="flex flex-wrap gap-4 mt-6">
   {["S", "M", "L", "XL"].map((size) => (
     <button
       key={size}
