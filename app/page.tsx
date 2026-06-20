@@ -88,7 +88,53 @@ return (
 
         </div>
       </section>
+<section className="max-w-7xl mx-auto px-6 py-24">
 
+  <div className="text-center mb-16">
+    <h2 className="text-5xl md:text-6xl font-black">
+      TRUSTED BY CUSTOMERS
+    </h2>
+
+    <p className="text-gray-400 mt-4">
+      Premium quality. Built to last.
+    </p>
+  </div>
+
+  <div className="grid md:grid-cols-3 gap-8">
+
+    <div className="border border-white/10 rounded-3xl p-8">
+      <p className="text-2xl mb-4">★★★★★</p>
+      <p className="text-gray-300">
+        Amazing quality and perfect fit.
+      </p>
+      <p className="mt-4 text-sm text-gray-500">
+        — Luca
+      </p>
+    </div>
+
+    <div className="border border-white/10 rounded-3xl p-8">
+      <p className="text-2xl mb-4">★★★★★</p>
+      <p className="text-gray-300">
+        Best tracksuit I have ever owned.
+      </p>
+      <p className="mt-4 text-sm text-gray-500">
+        — Kevin
+      </p>
+    </div>
+
+    <div className="border border-white/10 rounded-3xl p-8">
+      <p className="text-2xl mb-4">★★★★★</p>
+      <p className="text-gray-300">
+        Heavyweight cotton and premium feel.
+      </p>
+      <p className="mt-4 text-sm text-gray-500">
+        — Amir
+      </p>
+    </div>
+
+  </div>
+
+</section>
       <Footer />
     </main>
   );
