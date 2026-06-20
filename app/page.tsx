@@ -20,31 +20,7 @@ return (
     <main className="bg-black text-white">
       <Navbar />
       <Hero />
-      <section className="border-y border-white/10 bg-zinc-950">
-  <div className="max-w-7xl mx-auto px-6 py-20 text-center">
-
-    <p className="uppercase tracking-[0.4em] text-gray-500 mb-4">
-      New Drop
-    </p>
-
-    <h2 className="text-5xl md:text-7xl font-black mb-6">
-      SUMMER SETS
-    </h2>
-
-    <p className="text-gray-400 max-w-2xl mx-auto mb-10">
-      Lightweight essentials designed for summer.
-      Premium cotton. Limited quantities.
-    </p>
-
-    <a
-      href="/summer-sets"
-      className="inline-block px-10 py-4 rounded-full bg-white text-black font-bold hover:scale-105 transition"
-    >
-      SHOP SUMMER SETS →
-    </a>
-
-  </div>
-</section>
+      
       <div className="border-y border-white/10 py-4 text-center text-sm tracking-[0.2em] text-gray-300">
   LIMITED DROP 001 • 400 GSM PREMIUM COTTON • WORLDWIDE SHIPPING
 </div>
