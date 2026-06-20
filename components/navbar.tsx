@@ -7,8 +7,7 @@ export default function Navbar() {
   const { cart } = useCart();
 
   return (
-    <nav className="sticky top-0 z-50 flex items-center justify-between px-10 py-6 border-b border-white/10 bg-black/90 backdrop-blur">
-
+<nav className="sticky top-0 z-50 flex items-center justify-between px-4 md:px-10 py-3 md:py-6 border-b border-white/10 bg-black/90 backdrop-blur">
      <Link href="/">
   <Image
     src="/avison-logo.png"
@@ -16,7 +15,7 @@ export default function Navbar() {
     width={180}
     height={60}
     priority
-    className="h-auto w-[140px] md:w-[180px]"
+    className="h-auto w-[90px] md:w-[180px]"
   />
 </Link>
 

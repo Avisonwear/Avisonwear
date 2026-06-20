@@ -26,7 +26,7 @@ export default function Hero() {
   AVISON
 </p>
 
-        <h1 className="text-8xl md:text-[12rem] font-black mb-6 tracking-tight">
+        <h1 className="text-5xl md:text-[12rem] font-black mb-6 tracking-tight">
          Built From Ambition
         </h1>
 
