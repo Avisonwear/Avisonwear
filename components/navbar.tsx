@@ -1,5 +1,5 @@
 "use client";
-
+import Image from "next/image";
 import Link from "next/link";
 import { useCart } from "@/app/context/CartContext";
 
@@ -9,11 +9,15 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 flex items-center justify-between px-10 py-6 border-b border-white/10 bg-black/90 backdrop-blur">
 
-      <Link
-  href="/"
-  className="text-2xl md:text-3xl font-bold tracking-[0.3em]"
->
-  AVISON
+     <Link href="/">
+  <Image
+    src="/avison-logo.png"
+    alt="Avison"
+    width={180}
+    height={60}
+    priority
+    className="h-auto w-[140px] md:w-[180px]"
+  />
 </Link>
 
       <div className="hidden md:flex gap-16 text-base uppercase font-medium tracking-wider">
