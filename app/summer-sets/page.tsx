@@ -1,45 +1,35 @@
-import Link from "next/link";
+import Navbar from "@/components/navbar";
+import ProductCard from "@/components/productcard";
+import { supabase } from "@/lib/supabase";
 
-export default function SummerSetsPage() {
+export default async function SummerSetsPage() {
+  const { data: products } = await supabase
+    .from("products")
+    .select("*")
+    .eq("category", "summer-set")
+    .eq("drop", 1);
+
   return (
-    <main className="min-h-screen bg-black text-white flex items-center justify-center">
+    <main className="bg-black text-white min-h-screen">
+      <Navbar />
 
-      <Link
-        href="/"
-        className="
-        absolute
-        top-8
-        left-8
-        px-6
-        py-3
-        border
-        border-white/20
-        rounded-full
-        hover:border-white
-        transition
-        "
-      >
-        ← Return Home
-      </Link>
-
-      <div className="text-center">
-        <p className="text-green-400 tracking-[0.3em] mb-4">
-          DROP 002
-        </p>
-
-        <h1 className="text-7xl font-black mb-4">
+      <section className="max-w-7xl mx-auto px-6 py-24">
+        <h1 className="text-6xl font-black mb-12">
           SUMMER SETS
         </h1>
 
-        <p className="text-2xl text-gray-400">
-          Coming Soon.
-        </p>
-
-        <p className="text-gray-500 mt-4">
-          T-Shirts • Shorts • New Summer Colours
-        </p>
-      </div>
-
+        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-10">
+          {products?.map((product: any) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              price={`CHF ${product.price}`}
+              image={product.image}
+              link={`/products/${product.slug}`}
+            />
+          ))}
+        </div>
+      </section>
     </main>
   );
 }
