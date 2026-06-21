@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar";
 import ProductCard from "@/components/productcard";
 import { supabase } from "@/lib/supabase";
-
+export const dynamic = "force-dynamic";
 export default async function SummerSetsPage() {
   const { data: products } = await supabase
     .from("products")

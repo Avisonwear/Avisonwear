@@ -3,7 +3,7 @@ import Hero from "@/components/hero";
 import ProductCard from "@/components/productcard";
 import Footer from "@/components/footer";
 import { supabase } from "@/lib/supabase";
-
+export const dynamic = "force-dynamic";
 export default async function Home() {
   const { data: products, error } = await supabase
   .from("products")
