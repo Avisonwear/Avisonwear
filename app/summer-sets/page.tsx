@@ -10,7 +10,7 @@ export default async function SummerSetsPage() {
     .eq("drop", 1);
     console.log("SUMMER PRODUCTS:", products?.length);
 console.log(products);
-
+console.log(products?.map((p) => p.name));
   return (
     <main className="bg-black text-white min-h-screen">
       <Navbar />
