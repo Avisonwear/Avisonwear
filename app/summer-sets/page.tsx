@@ -8,6 +8,8 @@ export default async function SummerSetsPage() {
     .select("*")
     .eq("category", "summer-set")
     .eq("drop", 1);
+    console.log("SUMMER PRODUCTS:", products?.length);
+console.log(products);
 
   return (
     <main className="bg-black text-white min-h-screen">
